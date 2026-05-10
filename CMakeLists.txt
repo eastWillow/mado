@@ -72,3 +72,20 @@ add_executable(pico-hw-tests
 target_link_libraries(pico-hw-tests twin pico_stdio_rtt)
 pico_enable_stdio_rtt(pico-hw-tests 1)
 pico_add_extra_outputs(pico-hw-tests)
+
+add_executable(pico-unit-tests 
+    tests/pico_unit_tests.c
+    backend/pico_backend.c
+    backend/pico/config/DEV_Config.c
+    backend/pico/lcd/LCD_Driver.c
+    backend/pico/lcd/LCD_Touch.c
+    backend/pico/lcd/LCD_GUI.c
+    backend/pico/font/font8.c
+    backend/pico/font/font12.c
+    backend/pico/font/font16.c
+    backend/pico/font/font20.c
+    backend/pico/font/font24.c
+)
+target_link_libraries(pico-unit-tests twin pico_stdio_rtt)
+pico_enable_stdio_rtt(pico-unit-tests 1)
+pico_add_extra_outputs(pico-unit-tests)
