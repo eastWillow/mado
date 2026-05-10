@@ -1063,4 +1063,14 @@ void TP_Init( LCD_SCAN_DIR Lcd_ScanDir )
     TP_Read_ADC_XY(&sTP_DEV.Xpoint, &sTP_DEV.Ypoint);
 }
 
+uint8_t TP_Read_Point(TP_DRAW *p) {
+    TP_Scan(0);
+    if (sTP_DEV.chStatus & TP_PRESS_DOWN) {
+        p->Xpoint = sTP_Draw.Xpoint;
+        p->Ypoint = sTP_Draw.Ypoint;
+        return 1;
+    }
+    return 0;
+}
+
 

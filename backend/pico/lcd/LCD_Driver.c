@@ -408,7 +408,6 @@ function:
 ********************************************************************************/
 void LCD_Init(LCD_SCAN_DIR LCD_ScanDir, uint16_t LCD_BLval)
 {
-    
     LCD_Reset();//Hardware reset
 
     LCD_InitReg();//Set the initialization register
@@ -436,15 +435,15 @@ void LCD_SetWindow(POINT Xstart, POINT Ystart,	POINT Xend, POINT Yend)
 	LCD_WriteReg(0x2A);
 	LCD_WriteData(Xstart >> 8);	 		//Set the horizontal starting point to the high octet
 	LCD_WriteData(Xstart & 0xff);	 	//Set the horizontal starting point to the low octet
-	LCD_WriteData((Xend - 1) >> 8);		//Set the horizontal end to the high octet
-	LCD_WriteData((Xend - 1) & 0xff);	//Set the horizontal end to the low octet
+	LCD_WriteData(Xend >> 8);		//Set the horizontal end to the high octet
+	LCD_WriteData(Xend & 0xff);	//Set the horizontal end to the low octet
 
 	//set the Y coordinates
 	LCD_WriteReg(0x2B);
 	LCD_WriteData(Ystart >> 8);
 	LCD_WriteData(Ystart & 0xff );
-	LCD_WriteData((Yend - 1) >> 8);
-	LCD_WriteData((Yend - 1) & 0xff);
+	LCD_WriteData(Yend >> 8);
+	LCD_WriteData(Yend & 0xff);
 
     LCD_WriteReg(0x2C);
 }
@@ -497,7 +496,7 @@ parameter:
 void LCD_SetArealColor(POINT Xstart, POINT Ystart, POINT Xend, POINT Yend,	COLOR Color)
 {
     if((Xend > Xstart) && (Yend > Ystart)) {
-        LCD_SetWindow(Xstart , Ystart , Xend , Yend  );
+        LCD_SetWindow(Xstart , Ystart , Xend - 1 , Yend - 1);
         LCD_SetColor ( Color , Xend - Xstart, Yend - Ystart);
     }
 }

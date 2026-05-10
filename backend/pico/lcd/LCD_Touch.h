@@ -14,7 +14,7 @@
 #ifndef __LCD_TOUCH_H_
 #define __LCD_TOUCH_H_
 
-#include "DEV_Config.h"
+#include "../config/DEV_Config.h"
 #include "LCD_Driver.h"
 #include "LCD_GUI.h"
 #include <math.h>
@@ -57,4 +57,5 @@ void TP_Adjust(void);
 void TP_Dialog(LCD_SCAN_DIR LCD_ScanDir);
 void TP_DrawBoard(LCD_SCAN_DIR LCD_ScanDir);
 void TP_Init( LCD_SCAN_DIR Lcd_ScanDir );
+uint8_t TP_Read_Point(TP_DRAW *p);
 #endif

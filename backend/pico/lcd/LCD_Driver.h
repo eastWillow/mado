@@ -17,7 +17,7 @@
 #ifndef __LCD_DRIVER_H
 #define __LCD_DRIVER_H
 
-#include "DEV_Config.h"
+#include "../config/DEV_Config.h"
 
 #define LCD_2_8				0x52
 #define LCD_3_5				0x00
