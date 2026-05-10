@@ -60,7 +60,7 @@ note:
 ********************************************************************************/
 uint8_t System_Init(void)
 {
-	stdio_init_all();
+	// stdio_init_all();
 	DEV_GPIO_Init();
 	spi_init(SPI_PORT,4000000);
 	gpio_set_function(LCD_CLK_PIN,GPIO_FUNC_SPI);
@@ -106,6 +106,5 @@ void Driver_Delay_ms(uint32_t xms)
 
 void Driver_Delay_us(uint32_t xus)
 {
-	int j;
-    for(j=xus; j > 0; j--);
+	sleep_us(xus);
 }
