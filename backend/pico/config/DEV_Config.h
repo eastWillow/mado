@@ -1,5 +1,5 @@
 /*****************************************************************************
-* | File      	:	DEV_Config.h
+* | File      	:	DEV_Config.c
 * | Author      :   Waveshare team
 * | Function    :	GPIO Function
 * | Info        :

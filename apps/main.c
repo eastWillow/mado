@@ -13,6 +13,12 @@
 #include <time.h>
 #include <unistd.h>
 
+#if defined(PICO_BOARD)
+#include "pico/stdlib.h"
+#include "pico/stdio_rtt.h"
+#include "backend/pico/lcd/LCD_Driver.h"
+#endif
+
 #include "apps_animation.h"
 #include "apps_calc.h"
 #include "apps_clock.h"
@@ -20,8 +26,13 @@
 #include "apps_multi.h"
 #include "apps_spline.h"
 
+#if defined(PICO_BOARD)
+#define WIDTH 150
+#define HEIGHT 150
+#else
 #define WIDTH 640
 #define HEIGHT 480
+#endif
 
 #define ASSET_PATH "assets/"
 
@@ -90,6 +101,9 @@ static void sigint_handler(int sig)
 static void init_demo_apps(twin_context_t *ctx)
 {
     twin_screen_t *screen = ctx->screen;
+#if defined(PICO_BOARD)
+    apps_spline_start(screen, "Spline", 0, 0, 150, 150); //480 x 320
+#else
 #if defined(CONFIG_WINDOW_MANAGER)
 #if defined(CONFIG_DEMO_MULTI)
     apps_multi_start(screen, "Demo", 100, 100, 400, 400);
@@ -127,11 +141,16 @@ static void init_demo_apps(twin_context_t *ctx)
     apps_image_start(screen, "Viewer", 20, 20);
 #endif
 #endif
+#endif
     twin_screen_set_active(screen, screen->top);
 }
 
 int main(void)
 {
+#if defined(PICO_BOARD)
+    stdio_rtt_init();
+    sleep_ms(2000);
+#endif
     tx = twin_create(WIDTH, HEIGHT);
     if (!tx)
         return 1;
