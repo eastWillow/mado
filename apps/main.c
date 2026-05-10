@@ -102,7 +102,7 @@ static void init_demo_apps(twin_context_t *ctx)
 {
     twin_screen_t *screen = ctx->screen;
 #if defined(PICO_BOARD)
-    apps_spline_start(screen, "Spline", 0, 0, 150, 150); //480 x 320
+    apps_spline_start(screen, "Spline", 0, 0, 50, 50); //480 x 320
 #else
 #if defined(CONFIG_WINDOW_MANAGER)
 #if defined(CONFIG_DEMO_MULTI)

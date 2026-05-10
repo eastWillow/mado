@@ -75,3 +75,8 @@ add_executable(pico-unit-tests tests/pico_unit_tests.c)
 target_link_libraries(pico-unit-tests twin pico_stdio_rtt)
 pico_enable_stdio_rtt(pico-unit-tests 1)
 pico_add_extra_outputs(pico-unit-tests)
+
+add_executable(demo-pico apps/main.c apps/calc.c apps/clock.c apps/image.c apps/spline.c)
+target_link_libraries(demo-pico twin pico_stdio_rtt)
+pico_enable_stdio_rtt(demo-pico 1)
+pico_add_extra_outputs(demo-pico)
